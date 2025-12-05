@@ -1,0 +1,122 @@
+.comparison-container {
+  background: white;
+  padding: 2rem;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  margin-bottom: 2rem;
+}
+
+.comparison-container h2 {
+  margin-top: 0;
+  color: #333;
+  font-size: 1.75rem;
+}
+
+.asin-label {
+  color: #666;
+  margin-bottom: 1.5rem;
+  font-size: 1rem;
+}
+
+.comparison-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+}
+
+.comparison-column {
+  border: 2px solid #e0e0e0;
+  border-radius: 8px;
+  padding: 1.5rem;
+  background: #fafafa;
+}
+
+.comparison-column.original {
+  border-color: #e0e0e0;
+}
+
+.comparison-column.optimized {
+  border-color: #4caf50;
+  background: #f1f8f4;
+}
+
+.comparison-column h3 {
+  margin-top: 0;
+  margin-bottom: 1.5rem;
+  color: #333;
+  font-size: 1.25rem;
+  border-bottom: 2px solid currentColor;
+  padding-bottom: 0.5rem;
+}
+
+.comparison-column.original h3 {
+  color: #666;
+}
+
+.comparison-column.optimized h3 {
+  color: #4caf50;
+}
+
+.section {
+  margin-bottom: 1.5rem;
+}
+
+.section:last-child {
+  margin-bottom: 0;
+}
+
+.section h4 {
+  color: #555;
+  font-size: 1rem;
+  margin-bottom: 0.5rem;
+  font-weight: 600;
+}
+
+.content {
+  color: #333;
+  line-height: 1.6;
+  margin: 0;
+}
+
+.description {
+  white-space: pre-wrap;
+}
+
+.bullet-list {
+  margin: 0;
+  padding-left: 1.5rem;
+}
+
+.bullet-list li {
+  color: #333;
+  line-height: 1.6;
+  margin-bottom: 0.5rem;
+}
+
+.keywords {
+  margin-top: 1.5rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid #ddd;
+}
+
+.keyword-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.keyword-tag {
+  background: #4caf50;
+  color: white;
+  padding: 0.5rem 1rem;
+  border-radius: 20px;
+  font-size: 0.875rem;
+  font-weight: 500;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .comparison-grid {
+    grid-template-columns: 1fr;
+  }
+}

@@ -1,0 +1,55 @@
+version: '3.8'
+
+services:
+  mysql:
+    image: mysql:8.0
+    container_name: salesduo-mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: salesduo_password
+      MYSQL_DATABASE: salesduo
+      MYSQL_USER: salesduo_user
+      MYSQL_PASSWORD: salesduo_password
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql
+      - ./backend/db/schema.sql:/docker-entrypoint-initdb.d/schema.sql
+    networks:
+      - salesduo-network
+
+  backend:
+    build: ./backend
+    container_name: salesduo-backend
+    environment:
+      PORT: 3001
+      DB_HOST: mysql
+      DB_USER: salesduo_user
+      DB_PASSWORD: salesduo_password
+      DB_NAME: salesduo
+      OPENAI_API_KEY: ${OPENAI_API_KEY}
+    ports:
+      - "3001:3001"
+    depends_on:
+      - mysql
+    networks:
+      - salesduo-network
+    command: sh -c "sleep 10 && npm start"
+
+  frontend:
+    build: ./frontend
+    container_name: salesduo-frontend
+    environment:
+      REACT_APP_API_URL: http://localhost:3001/api
+    ports:
+      - "3000:3000"
+    depends_on:
+      - backend
+    networks:
+      - salesduo-network
+
+volumes:
+  mysql_data:
+
+networks:
+  salesduo-network:
+    driver: bridge
