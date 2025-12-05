@@ -22,6 +22,11 @@ An AI-powered web application that helps optimize Amazon product listings by fet
 
 ## Prerequisites
 
+### Option 1: Docker (Recommended)
+- Docker and Docker Compose
+- OpenAI API Key
+
+### Option 2: Manual Setup
 - Node.js (v14 or higher)
 - MySQL (v5.7 or higher)
 - OpenAI API Key
@@ -35,7 +40,36 @@ git clone https://github.com/sksinha2410/SalesDuo.git
 cd SalesDuo
 ```
 
-### 2. Database Setup
+### 2. Choose Your Setup Method
+
+#### Option A: Quick Setup with Docker (Recommended)
+
+1. Create a `.env` file in the root directory:
+
+```bash
+echo "OPENAI_API_KEY=your_openai_api_key_here" > .env
+```
+
+2. Start all services with Docker Compose:
+
+```bash
+docker-compose up -d
+```
+
+That's it! The application will be available at:
+- Frontend: http://localhost:3000
+- Backend API: http://localhost:3001
+- MySQL: localhost:3306
+
+To stop the services:
+
+```bash
+docker-compose down
+```
+
+#### Option B: Manual Setup
+
+##### 1. Database Setup
 
 Create a MySQL database and run the schema:
 
@@ -65,7 +99,7 @@ CREATE TABLE IF NOT EXISTS product_optimizations (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 ```
 
-### 3. Backend Setup
+##### 2. Backend Setup
 
 ```bash
 cd backend
@@ -89,7 +123,7 @@ DB_NAME=salesduo
 OPENAI_API_KEY=your_openai_api_key_here
 ```
 
-### 4. Frontend Setup
+##### 3. Frontend Setup
 
 ```bash
 cd ../frontend
@@ -108,7 +142,7 @@ Edit if needed (default should work):
 REACT_APP_API_URL=http://localhost:3001/api
 ```
 
-## Running the Application
+## Running the Application (Manual Setup)
 
 ### Start the Backend
 
