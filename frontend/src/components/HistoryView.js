@@ -9,23 +9,23 @@ function HistoryView({ asin }) {
   const [selectedItem, setSelectedItem] = useState(null);
 
   useEffect(() => {
+    const fetchHistory = async () => {
+      setLoading(true);
+      setError('');
+      try {
+        const response = await getAsinHistory(asin);
+        setHistory(response.data || []);
+      } catch (err) {
+        setError(err.message);
+      } finally {
+        setLoading(false);
+      }
+    };
+
     if (asin) {
       fetchHistory();
     }
   }, [asin]);
-
-  const fetchHistory = async () => {
-    setLoading(true);
-    setError('');
-    try {
-      const response = await getAsinHistory(asin);
-      setHistory(response.data || []);
-    } catch (err) {
-      setError(err.message);
-    } finally {
-      setLoading(false);
-    }
-  };
 
   if (loading) {
     return <div className="history-container">Loading history...</div>;
